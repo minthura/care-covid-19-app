@@ -7,12 +7,12 @@
     <string name="title_notifications">Notifications</string>
     <string name="app_coronavirus_pandemic">ကော်ရိုနာဗိုင်းရပ်စ် ကပ်ဘေး</string>
     <string name="app_covid_19_live_count">COVID-19 တိုက်ရိုက် အချက်အလက်များ</string>
-    <string name="app_total_cases">ကူးဆက်သူ စုစုပေါင်း</string>
+    <string name="app_total_cases">ကူးစက်သူ စုစုပေါင်း</string>
     <string name="app_total_deaths">သေဆုံးသူ စုစုပေါင်း</string>
     <string name="app_total_recovered">ပြန်ကောင်းသူ စုစုပေါင်း</string>
-    <string name="app_territories">ကူးဆက်နိုင်ငံများ</string>
+    <string name="app_territories">ကူးစက်နိုင်ငံများ</string>
     <string name="app_country_myanmar">မြန်မာ</string>
-    <string name="app_cases">ကူးဆက်\nသူများ</string>
+    <string name="app_cases">ကူးစက်\nသူများ</string>
     <string name="app_deaths">သေဆုံး\nသူများ</string>
     <string name="app_recovered">ပြန်ကောင်း\nသူများ</string>
     <string name="app_add_preferred">အဓိက စောင့်ကြည့်မည်</string>
