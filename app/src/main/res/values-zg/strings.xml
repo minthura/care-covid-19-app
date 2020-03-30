@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Care COVID-19</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">တိုက္႐ိုက္ေဒတာ</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="app_coronavirus_pandemic">ေကာ္႐ိုနာဗိုင္းရပ္စ္ ကပ္ေဘး</string>
+    <string name="app_covid_19_live_count">COVID-19 တိုက္႐ိုက္ အခ်က္အလက္မ်ား</string>
+    <string name="app_total_cases">ကူးဆက္သူ စုစုေပါင္း</string>
+    <string name="app_total_deaths">ေသဆုံးသူ စုစုေပါင္း</string>
+    <string name="app_total_recovered">ျပန္ေကာင္းသူ စုစုေပါင္း</string>
+    <string name="app_territories">ကူးဆက္ႏိုင္ငံမ်ား</string>
+    <string name="app_country_myanmar">ျမန္မာ</string>
+    <string name="app_cases">ကူးဆက္\nသူမ်ား</string>
+    <string name="app_deaths">ေသဆုံး\nသူမ်ား</string>
+    <string name="app_recovered">ျပန္ေကာင္း\nသူမ်ား</string>
+    <string name="app_add_preferred">အဓိက ေစာင့္ၾကည့္မည္</string>
+    <string name="app_protect_yourself_and_others_from_getting_sick">မိမိကိုယ္ႏွင့္ အျခားသူမ်ားအား ကူးစက္မႈမွ ကာကြယ္ျခင္း</string>
+    <string name="app_stay_healthy_while_travelling">ခရီးသြားေနစဥ္ က်န္းမာစြာေနထိုင္ျခင္း</string>
+    <string name="app_how_to_use_mask">မ်က္ႏွာဖုံးကို မွန္ကန္စြာ အသုံးျပဳနည္း</string>
+    <string name="app_how_to_handrub_handwash">ထိေရာက္မွန္ကန္စြာ လက္ေဆးနည္း</string>
+    <string name="app_how_covid_19_spread">COVID-19 ဘယ္လိုပ်ံႏွံသလဲ?</string>
+    <string name="app_role_to_protect_ourselves_and_others">COVID-19 ႏွင့္ပတ္သက္၍ သိသင့္သိထိုက္ေသာ အခ်က္မ်ား</string>
+    <string name="app_tips">သိမွတ္စရာမ်ား</string>
+    <string name="app_loading">အခ်က္အလက္မ်ားရယူေနပါသည္</string>
+    <string name="app_cannot_get_data">အခ်က္အလက္မ်ား ရယူလို႔မရေသးပါ။\nေနာက္မွျပန္စစ္ၾကည့္‌ပါ။</string>
+    <string name="app_choose_language">အသုံးျပဳမည့္ဘာသာစကားကို ေ႐ြးခ်ယ္ပါ</string>
+    <string name="app_use">သုံးမည္</string>
+    <string name="app_settings">ဆက္တင္မ်ား</string>
+    <string name="setting_language">ဘာသာစကား</string>
+    <string name="app_cancel">ပိတ္မည္</string>
+    <string name="app_ok">အိုေက</string>
+    <string name="setting_about">အခ်က္အလက္</string>
+    <string name="setting_about_this_app">App ၏အေသးစိတ္အခ်က္အလက္</string>
+    <string name="app_developer">ေရးသားသူ</string>
+    <string name="app_version">ဗားရွင္း</string>
+    <string name="app_data_ref">ေဒတာရယူေသာ အရင္းအျမစ္</string>
+</resources>

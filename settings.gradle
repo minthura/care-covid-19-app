@@ -1,0 +1,3 @@
+rootProject.name='CareCovid19'
+include ':app'
+include ':caresdk'
