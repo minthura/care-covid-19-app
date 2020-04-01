@@ -36,4 +36,5 @@
     <string name="app_developer">ရေးသားသူ</string>
     <string name="app_version">ဗားရှင်း</string>
     <string name="app_data_ref">ဒေတာရယူသော အရင်းအမြစ်</string>
+    <string name="app_search_country">နိုင်ငံအလိုက်ရှာမည်</string>
 </resources>

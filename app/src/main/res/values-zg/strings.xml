@@ -36,4 +36,5 @@
     <string name="app_developer">ေရးသားသူ</string>
     <string name="app_version">ဗားရွင္း</string>
     <string name="app_data_ref">ေဒတာရယူေသာ အရင္းအျမစ္</string>
+    <string name="app_search_country">ႏိုင္ငံအလိုက္ရွာမည္</string>
 </resources>

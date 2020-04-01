@@ -1,10 +1,15 @@
 package tech.minthura.carecovid.ui.home;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,7 +29,10 @@ import java.util.TimerTask;
 
 import tech.minthura.carecovid.R;
 import tech.minthura.carecovid.adapter.CountriesRecyclerViewAdapter;
+import tech.minthura.carecovid.support.HomeListener;
 import tech.minthura.carecovid.support.NumberFormatter;
+import tech.minthura.carecovid.support.ViewExpander;
+import tech.minthura.carecovid.view.EditTextBackEvent;
 import tech.minthura.caresdk.Session;
 import tech.minthura.caresdk.model.Country;
 import tech.minthura.caresdk.model.TotalStats;
@@ -35,6 +43,16 @@ public class HomeFragment extends Fragment {
     private HomeViewModel homeViewModel;
     private CountriesRecyclerViewAdapter mCountriesRecyclerViewAdapter;
     private Timer mTimer;
+    private HomeListener mHomeListener;
+    private EditTextBackEvent searchView;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof HomeListener) {
+            mHomeListener = (HomeListener)context;
+        }
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -50,10 +68,54 @@ public class HomeFragment extends Fragment {
         TextView txtPreferredCountryDeaths = view.findViewById(R.id.txt_mm_deaths);
         TextView txtPreferredCountryRecovered = view.findViewById(R.id.txt_mm_recovered);
         TextView txtError = view.findViewById(R.id.txt_error);
+        searchView = view.findViewById(R.id.searchView);
+        View headerLayout = view.findViewById(R.id.header_layout);
+        searchView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    ViewExpander.collapse(headerLayout);
+                } else {
+                    ViewExpander.expand(headerLayout);
+                }
+            }
+        });
+        searchView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    mHomeListener.dismissSoftKeyboard();
+                }
+                return false;
+            }
+        });
+        searchView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                mCountriesRecyclerViewAdapter.filter(s.toString());
+            }
+        });
+        searchView.setOnEditTextImeBackListener(new EditTextBackEvent.EditTextImeBackListener() {
+            @Override
+            public void onImeBack(EditTextBackEvent ctrl, String text) {
+                searchView.clearFocus();
+            }
+        });
         ImageView imgPreferredCountryFlag = view.findViewById(R.id.img_preferred_country_flag);
         LottieAnimationView lottieAnimationView = view.findViewById(R.id.loading_lottie_view);
         RecyclerView recyclerViewCountries = view.findViewById(R.id.recyclerViewCountries);
-        recyclerViewCountries.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerViewCountries.setLayoutManager(linearLayoutManager);
         mCountriesRecyclerViewAdapter = new CountriesRecyclerViewAdapter(getContext(), new ArrayList<>());
         recyclerViewCountries.setAdapter(mCountriesRecyclerViewAdapter);
         homeViewModel.getCountriesLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Country>>() {

@@ -23,6 +23,8 @@ import tech.minthura.caresdk.model.Country;
 public class CountriesRecyclerViewAdapter extends RecyclerView.Adapter<CountriesRecyclerViewAdapter.CountryViewHolder> {
 
     private ArrayList<Country> mCountries;
+    private ArrayList<Country> mFilteredCountries = new ArrayList<>();
+    private boolean isFiltering = false;
     private Context mContext;
     private int position;
 
@@ -48,7 +50,12 @@ public class CountriesRecyclerViewAdapter extends RecyclerView.Adapter<Countries
 
     @Override
     public void onBindViewHolder(@NonNull CountryViewHolder holder, int position) {
-        Country country = mCountries.get(position);
+        Country country = null;
+        if (isFiltering) {
+            country = mFilteredCountries.get(position);
+        } else {
+            country = mCountries.get(position);
+        }
         Picasso.get().load(country.getCountryInfo().getFlag()).into(holder.imgFlag);
         holder.txtCountryName.setText(country.getCountry());
         holder.txtCases.setText(NumberFormatter.INSTANCE.formatToUnicode(country.getCases()));
@@ -61,6 +68,23 @@ public class CountriesRecyclerViewAdapter extends RecyclerView.Adapter<Countries
                 return false;
             }
         });
+    }
+
+    public void filter(String text) {
+        if (text.length() > 0){
+            mFilteredCountries.clear();
+            isFiltering = true;
+            for (Country country : mCountries) {
+                if (country.getCountry() != null) {
+                    if (country.getCountry().toLowerCase().contains(text.toLowerCase())){
+                        mFilteredCountries.add(country);
+                    }
+                }
+            }
+        } else {
+            isFiltering = false;
+        }
+        notifyDataSetChanged();
     }
 
     @Override
@@ -76,11 +100,17 @@ public class CountriesRecyclerViewAdapter extends RecyclerView.Adapter<Countries
     }
 
     public Country getCountryAtPosition(int position) {
+        if (isFiltering) {
+            return mFilteredCountries.get(position);
+        }
         return mCountries.get(position);
     }
 
     @Override
     public int getItemCount() {
+        if (isFiltering) {
+            return mFilteredCountries.size();
+        }
         return mCountries.size();
     }
 
