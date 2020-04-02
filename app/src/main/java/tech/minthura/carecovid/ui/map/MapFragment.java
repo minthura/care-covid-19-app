@@ -68,10 +68,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                                     hospital.getConfirmed(),
                                     hospital.getDeath(),
                                     hospital.getRecovered()))
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_marker)));
+                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_hospital)));
                     mMap.setInfoWindowAdapter(new CVInfoWindowAdapter(getContext()));
                     if (movePosition){
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 5.0f));
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 5.5f));
                         movePosition = false;
                     }
                 }
@@ -100,6 +100,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(19.7633, 96.0785), 5.5f));
         DialogUtils.showLoadingDialog(getContext(), getString(R.string.app_loading));
         mMapViewModel.getHospitals();
     }
