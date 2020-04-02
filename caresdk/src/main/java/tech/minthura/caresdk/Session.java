@@ -16,6 +16,7 @@ import tech.minthura.caresdk.model.Hospital;
 import tech.minthura.caresdk.model.NotificationMessageEvent;
 import tech.minthura.caresdk.model.Post;
 import tech.minthura.caresdk.model.TotalStats;
+import tech.minthura.caresdk.model.UpdateCheck;
 import tech.minthura.caresdk.service.BaseService;
 import tech.minthura.caresdk.service.CovidApiCallback;
 import tech.minthura.caresdk.service.ErrorResponse;
@@ -122,6 +123,10 @@ public class Session {
 
     public void getPosts(final CovidApiCallback<ArrayList<Post>> callback){
         informationService.getPosts(callback);
+    }
+
+    public void updateCheck(final CovidApiCallback<UpdateCheck> callback){
+        informationService.updateCheck(mAppVersionCode, callback);
     }
 
     public void getHospitals(final CovidApiCallback<ArrayList<Hospital>> callback){

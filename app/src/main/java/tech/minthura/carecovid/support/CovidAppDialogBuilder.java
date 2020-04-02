@@ -11,14 +11,21 @@ import tech.minthura.carecovid.R;
 
 public class CovidAppDialogBuilder extends AlertDialog.Builder {
 
+    private boolean cancelable = false;
+
     public CovidAppDialogBuilder(@NonNull Context context) {
         super(context);
+    }
+
+    public CovidAppDialogBuilder(@NonNull Context context, boolean cancelable) {
+        super(context);
+        this.cancelable = cancelable;
     }
 
     @Override
     public AlertDialog show() {
         AlertDialog dialog = super.show();
-        dialog.setCancelable(false);
+        dialog.setCancelable(cancelable);
         Button positive = dialog.getButton(DialogInterface.BUTTON_POSITIVE);
         Button negative = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
         if (positive != null) {

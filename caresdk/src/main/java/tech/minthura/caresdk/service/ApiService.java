@@ -11,6 +11,7 @@ import tech.minthura.caresdk.model.Device;
 import tech.minthura.caresdk.model.Hospital;
 import tech.minthura.caresdk.model.Post;
 import tech.minthura.caresdk.model.TotalStats;
+import tech.minthura.caresdk.model.UpdateCheck;
 
 interface ApiService {
 
@@ -34,5 +35,8 @@ interface ApiService {
 
     @GET("hospitals")
     Call<ArrayList<Hospital>> getHospitals();
+
+    @GET("updatecheck/{versionCode}")
+    Call<UpdateCheck> updateCheck(@Path("versionCode") int versionCode);
 
 }

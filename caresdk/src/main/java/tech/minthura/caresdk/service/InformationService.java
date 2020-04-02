@@ -11,6 +11,7 @@ import tech.minthura.caresdk.model.Device;
 import tech.minthura.caresdk.model.Hospital;
 import tech.minthura.caresdk.model.Post;
 import tech.minthura.caresdk.model.TotalStats;
+import tech.minthura.caresdk.model.UpdateCheck;
 
 public class InformationService {
 
@@ -111,6 +112,21 @@ public class InformationService {
 
             @Override
             public void onFailure(Call<ArrayList<Post>> call, Throwable t) {
+                mBaseService.handleFailure(t, callback);
+            }
+        });
+    }
+
+    public void updateCheck(int versionCode, final CovidApiCallback<UpdateCheck> callback){
+        Call<UpdateCheck> call = mBaseService.getApiService().updateCheck(versionCode);
+        call.enqueue(new Callback<UpdateCheck>() {
+            @Override
+            public void onResponse(Call<UpdateCheck> call, Response<UpdateCheck> response) {
+                mBaseService.handleResponse(response, callback);
+            }
+
+            @Override
+            public void onFailure(Call<UpdateCheck> call, Throwable t) {
                 mBaseService.handleFailure(t, callback);
             }
         });

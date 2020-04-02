@@ -48,4 +48,8 @@
     <string name="app_map_pui">PUI</string>
     <string name="app_map_township">Township</string>
     <string name="app_map_pending">Lab Pending</string>
+    <string name="app_update_available">App Update Available!</string>
+    <string name="app_maintenance_message">Server is under maintenance for better app experience. Please try again later.</string>
+    <string name="app_maintenance_title">Server Maintenance</string>
+    <string name="app_download">Download</string>
 </resources>
