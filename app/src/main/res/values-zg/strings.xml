@@ -37,4 +37,12 @@
     <string name="app_version">ဗားရွင္း</string>
     <string name="app_data_ref">ေဒတာရယူေသာ အရင္းအျမစ္</string>
     <string name="app_search_country">ႏိုင္ငံအလိုက္ရွာမည္</string>
+    <string name="app_map">ေျမပုံ</string>
+    <string name="app_map_suspected">သံသယ</string>
+    <string name="app_map_confirmed">အတည္ျပဳ</string>
+    <string name="app_map_deaths">ေသဆုံး</string>
+    <string name="app_map_recovered">ျပန္ေကာင္း</string>
+    <string name="app_map_pui">ေစာင့္ၾကည့္</string>
+    <string name="app_map_township">ၿမိဳ႕နယ္</string>
+    <string name="app_map_pending">ဓါတ္ခြဲအေျဖေစာင့္ဆိုင္း</string>
 </resources>

@@ -8,6 +8,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import tech.minthura.caresdk.model.Country;
 import tech.minthura.caresdk.model.Device;
+import tech.minthura.caresdk.model.Hospital;
 import tech.minthura.caresdk.model.Post;
 import tech.minthura.caresdk.model.TotalStats;
 
@@ -30,5 +31,8 @@ interface ApiService {
 
     @GET("post")
     Call<ArrayList<Post>> getPosts();
+
+    @GET("hospitals")
+    Call<ArrayList<Hospital>> getHospitals();
 
 }

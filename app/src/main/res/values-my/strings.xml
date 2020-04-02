@@ -37,4 +37,12 @@
     <string name="app_version">ဗားရှင်း</string>
     <string name="app_data_ref">ဒေတာရယူသော အရင်းအမြစ်</string>
     <string name="app_search_country">နိုင်ငံအလိုက်ရှာမည်</string>
+    <string name="app_map">မြေပုံ</string>
+    <string name="app_map_suspected">သံသယ</string>
+    <string name="app_map_confirmed">အတည်ပြု</string>
+    <string name="app_map_deaths">သေဆုံး</string>
+    <string name="app_map_recovered">ပြန်ကောင်း</string>
+    <string name="app_map_pui">စောင့်ကြည့်</string>
+    <string name="app_map_township">မြို့နယ်</string>
+    <string name="app_map_pending">ဓါတ်ခွဲအဖြေစောင့်ဆိုင်း</string>
 </resources>

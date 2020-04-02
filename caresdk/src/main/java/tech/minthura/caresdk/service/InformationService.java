@@ -8,6 +8,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import tech.minthura.caresdk.model.Country;
 import tech.minthura.caresdk.model.Device;
+import tech.minthura.caresdk.model.Hospital;
 import tech.minthura.caresdk.model.Post;
 import tech.minthura.caresdk.model.TotalStats;
 
@@ -110,6 +111,21 @@ public class InformationService {
 
             @Override
             public void onFailure(Call<ArrayList<Post>> call, Throwable t) {
+                mBaseService.handleFailure(t, callback);
+            }
+        });
+    }
+
+    public void getHospitals(final CovidApiCallback<ArrayList<Hospital>> callback){
+        Call<ArrayList<Hospital>> call = mBaseService.getApiService().getHospitals();
+        call.enqueue(new Callback<ArrayList<Hospital>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Hospital>> call, Response<ArrayList<Hospital>> response) {
+                mBaseService.handleResponse(response, callback);
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Hospital>> call, Throwable t) {
                 mBaseService.handleFailure(t, callback);
             }
         });

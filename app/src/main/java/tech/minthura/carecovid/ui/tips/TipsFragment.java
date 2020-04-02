@@ -24,7 +24,6 @@ import tech.minthura.caresdk.service.ErrorResponse;
 
 public class TipsFragment extends BaseFragment {
 
-    private TipsViewModel tipsViewModel;
     private HomeListener mHomeListener;
 
     @Override
@@ -37,7 +36,7 @@ public class TipsFragment extends BaseFragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        tipsViewModel = new ViewModelProvider(this).get(TipsViewModel.class);
+        TipsViewModel tipsViewModel = new ViewModelProvider(this).get(TipsViewModel.class);
         View view = inflater.inflate(R.layout.fragment_tips, container, false);
         RecyclerView recyclerViewPosts = view.findViewById(R.id.recyclerViewPosts);
         recyclerViewPosts.setLayoutManager(new LinearLayoutManager(getContext()));

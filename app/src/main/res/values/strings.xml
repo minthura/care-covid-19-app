@@ -28,9 +28,9 @@
     <string name="app_use">Use</string>
     <string name="app_settings">Settings</string>
     <string name="setting_language">Language</string>
-    <string name="app_unicode">မြန်မာ (Unicode)</string>
-    <string name="app_zawgyi">ျမန္မာ (Zawgyi)</string>
-    <string name="app_english">English</string>
+    <string name="app_unicode" translatable="false">မြန်မာ (Unicode)</string>
+    <string name="app_zawgyi" translatable="false">ျမန္မာ (Zawgyi)</string>
+    <string name="app_english" translatable="false">English</string>
     <string name="app_cancel">Cancel</string>
     <string name="app_ok">OK</string>
     <string name="setting_about">About</string>
@@ -40,4 +40,12 @@
     <string name="app_data_ref">Data Ref:</string>
     <string name="app_search_country">Search country</string>
     <item name="ctx_menu_add_preferred" type="id" />
+    <string name="app_map">Map</string>
+    <string name="app_map_suspected">Suspected</string>
+    <string name="app_map_confirmed">Confirmed</string>
+    <string name="app_map_deaths">Deaths</string>
+    <string name="app_map_recovered">Recovered</string>
+    <string name="app_map_pui">PUI</string>
+    <string name="app_map_township">Township</string>
+    <string name="app_map_pending">Lab Pending</string>
 </resources>

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 import tech.minthura.caresdk.model.Country;
 import tech.minthura.caresdk.model.Device;
+import tech.minthura.caresdk.model.Hospital;
 import tech.minthura.caresdk.model.NotificationMessageEvent;
 import tech.minthura.caresdk.model.Post;
 import tech.minthura.caresdk.model.TotalStats;
@@ -121,6 +122,10 @@ public class Session {
 
     public void getPosts(final CovidApiCallback<ArrayList<Post>> callback){
         informationService.getPosts(callback);
+    }
+
+    public void getHospitals(final CovidApiCallback<ArrayList<Hospital>> callback){
+        informationService.getHospitals(callback);
     }
 
     public void registerDevice(String fcmToken){
