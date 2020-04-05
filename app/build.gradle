@@ -22,7 +22,7 @@ android {
 
     buildTypes {
         release {
-            resValue "string", "api_base_url", "https://cvapi.minthura.tech/api/v1/"
+            resValue "string", "api_base_url", "https://cvapiv2.minthura.tech/api/v1/"
             versionNameSuffix = '-release'
             manifestPlaceholders = [usesCleartextTraffic: false]
             minifyEnabled true
