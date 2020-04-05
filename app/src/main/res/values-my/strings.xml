@@ -49,4 +49,11 @@
     <string name="app_maintenance_message">App ကို ပိုမိုကောင်းမွန်စွာ အသုံးပြုနိုင်ရန်အတွက် ဆာဗာကို အဆင်မြှင့်တင်နေပါသည်။ နောက်ခဏနေမှ ပြန်စစ်ကြည့်ပါ။</string>
     <string name="app_maintenance_title">ဆာဗာ ပြင်ဆင်နေသည်</string>
     <string name="app_download">ဒေါင်းလုပ်ပြုလုပ်မည်</string>
+    <string name="app_mminfo_pui">စောင့်ကြည့်</string>
+    <string name="app_mminfo_suspected">သံသယ</string>
+    <string name="app_mminfo_confirm">ပိုးတွေ့</string>
+    <string name="app_mminfo_lab_neg">ပိုးမတွေ့</string>
+    <string name="app_mminfo_lab_pending">ဓာတ်ခွဲအဖြေစောင့်ဆိုင်း</string>
+    <string name="app_mminfo_pui_sus">စောင့်ကြည့်/သံသယ</string>
+    <string name="app_mminfo_lab_deaths">သေဆုံး</string>
 </resources>

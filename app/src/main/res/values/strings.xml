@@ -52,4 +52,11 @@
     <string name="app_maintenance_message">Server is under maintenance for better app experience. Please try again later.</string>
     <string name="app_maintenance_title">Server Maintenance</string>
     <string name="app_download">Download</string>
+    <string name="app_mminfo_pui">PUI</string>
+    <string name="app_mminfo_suspected">Suspected</string>
+    <string name="app_mminfo_confirm">Confirmed</string>
+    <string name="app_mminfo_lab_neg">Lab Negative</string>
+    <string name="app_mminfo_lab_pending">Lab Pending</string>
+    <string name="app_mminfo_pui_sus">PUI &amp; Suspected</string>
+    <string name="app_mminfo_lab_deaths">Deaths</string>
 </resources>

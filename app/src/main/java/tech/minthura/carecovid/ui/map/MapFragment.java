@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -18,15 +19,13 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.util.ArrayList;
 import java.util.Locale;
 
 import tech.minthura.carecovid.R;
 import tech.minthura.carecovid.adapter.CVInfoWindowAdapter;
 import tech.minthura.carecovid.support.DialogUtils;
-import tech.minthura.carecovid.support.NumberConverter;
 import tech.minthura.carecovid.support.NumberFormatter;
-import tech.minthura.caresdk.model.Hospital;
+import tech.minthura.caresdk.model.MMMapInfo;
 import tech.minthura.caresdk.service.ErrorResponse;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -50,31 +49,41 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             e.printStackTrace();
         }
         mMapView.getMapAsync(this);
-        mMapViewModel.getHospitalsLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Hospital>>() {
+        mMapViewModel.getMapInfoLiveData().observe(getViewLifecycleOwner(), new Observer<MMMapInfo>() {
             @Override
-            public void onChanged(ArrayList<Hospital> hospitals) {
+            public void onChanged(MMMapInfo mapInfo) {
                 DialogUtils.dismiss();
                 boolean movePosition = true;
-                for(Hospital hospital : hospitals) {
-                    LatLng position = new LatLng(hospital.getLatitude(), hospital.getLongitude());
-                    mMap.addMarker(new MarkerOptions()
-                            .position(position)
-                            .title(hospital.getHospital())
-                            .snippet(getSnippet(
-                                    hospital.getTownship(),
-                                    hospital.getPui(),
-                                    hospital.getPending(),
-                                    hospital.getSuspected(),
-                                    hospital.getConfirmed(),
-                                    hospital.getDeath(),
-                                    hospital.getRecovered()))
-                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_hospital)));
-                    mMap.setInfoWindowAdapter(new CVInfoWindowAdapter(getContext()));
-                    if (movePosition){
-                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 5.5f));
-                        movePosition = false;
+                if (mMap != null) {
+                    for(MMMapInfo.Hospital hospital : mapInfo.getHospitals()) {
+                        LatLng position = new LatLng(hospital.getLatitude(), hospital.getLongitude());
+                        mMap.addMarker(new MarkerOptions()
+                                .position(position)
+                                .title(hospital.getHospital())
+                                .snippet(getSnippet(
+                                        hospital.getTownship(),
+                                        hospital.getPui(),
+                                        hospital.getPending(),
+                                        hospital.getSuspected(),
+                                        hospital.getConfirmed(),
+                                        hospital.getDeath(),
+                                        hospital.getRecovered()))
+                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_hospital)));
+                        mMap.setInfoWindowAdapter(new CVInfoWindowAdapter(getContext()));
+                        if (movePosition){
+                            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 5.5f));
+                            movePosition = false;
+                        }
                     }
                 }
+                MMMapInfo.MMInfo mmInfo = mapInfo.getMmInfo();
+                setTextViewString(view, R.id.app_mminfo_pui_sus, NumberFormatter.INSTANCE.formatToUnicode(mmInfo.getTotal()));
+                setTextViewString(view, R.id.app_mminfo_pui, NumberFormatter.INSTANCE.formatToUnicode(mmInfo.getPui()));
+                setTextViewString(view, R.id.app_mminfo_suspected, NumberFormatter.INSTANCE.formatToUnicode(mmInfo.getSuspected()));
+                setTextViewString(view, R.id.app_mminfo_confirm, NumberFormatter.INSTANCE.formatToUnicode(mmInfo.getConfirm()));
+                setTextViewString(view, R.id.app_mminfo_lab_neg, NumberFormatter.INSTANCE.formatToUnicode(mmInfo.getLabNegative()));
+                setTextViewString(view, R.id.app_mminfo_lab_pending, NumberFormatter.INSTANCE.formatToUnicode(mmInfo.getLabPending()));
+                setTextViewString(view, R.id.app_mminfo_lab_deaths, NumberFormatter.INSTANCE.formatToUnicode(mmInfo.getDeaths()));
             }
         });
         mMapViewModel.getErrorLiveData().observe(getViewLifecycleOwner(), new Observer<ErrorResponse>() {
@@ -84,6 +93,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             }
         });
         return view;
+    }
+
+    private void setTextViewString(View parent, int id, String text) {
+        ((TextView)parent.findViewById(id)).setText(text);
     }
 
     private String getSnippet(String township, int pui, int pending, int suspected, int confirmed, int death, int recovered){

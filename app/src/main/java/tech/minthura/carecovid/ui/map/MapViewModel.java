@@ -4,29 +4,26 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import java.util.ArrayList;
-
 import tech.minthura.caresdk.Session;
-import tech.minthura.caresdk.model.Hospital;
-import tech.minthura.caresdk.model.Post;
+import tech.minthura.caresdk.model.MMMapInfo;
 import tech.minthura.caresdk.service.CovidApiCallback;
 import tech.minthura.caresdk.service.ErrorResponse;
 
 public class MapViewModel extends ViewModel {
 
-    private MutableLiveData<ArrayList<Hospital>> mHospitals;
+    private MutableLiveData<MMMapInfo> mMapInfo;
     private MutableLiveData<ErrorResponse> mError;
 
     public MapViewModel() {
-        mHospitals = new MutableLiveData<>();
+        mMapInfo = new MutableLiveData<>();
         mError = new MutableLiveData<>();
     }
 
     void getHospitals() {
-        Session.getSession().getHospitals(new CovidApiCallback<ArrayList<Hospital>>() {
+        Session.getSession().getHospitals(new CovidApiCallback<MMMapInfo>() {
             @Override
-            public void onSuccess(ArrayList<Hospital> hospitals) {
-                mHospitals.setValue(hospitals);
+            public void onSuccess(MMMapInfo hospitals) {
+                mMapInfo.setValue(hospitals);
             }
 
             @Override
@@ -36,8 +33,8 @@ public class MapViewModel extends ViewModel {
         });
     }
 
-    LiveData<ArrayList<Hospital>> getHospitalsLiveData() {
-        return mHospitals;
+    LiveData<MMMapInfo> getMapInfoLiveData() {
+        return mMapInfo;
     }
     LiveData<ErrorResponse> getErrorLiveData() {
         return mError;
