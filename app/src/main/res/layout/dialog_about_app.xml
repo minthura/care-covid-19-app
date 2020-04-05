@@ -90,7 +90,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:textColor="@color/primaryTextColor"
-            android:text="1. Johns Hopkins CSSE\n2. covid19.joymogok.com"/>
+            android:text="1. Johns Hopkins CSSE\n2. covid19.joymogok.com\n[API by Nay Shein Oo]"/>
 
     </LinearLayout>
 
