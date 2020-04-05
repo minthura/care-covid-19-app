@@ -37,4 +37,23 @@
     <string name="app_version">ဗားရွင္း</string>
     <string name="app_data_ref">ေဒတာရယူေသာ အရင္းအျမစ္</string>
     <string name="app_search_country">ႏိုင္ငံအလိုက္ရွာမည္</string>
+    <string name="app_map">ေျမပုံ</string>
+    <string name="app_map_suspected">သံသယ</string>
+    <string name="app_map_confirmed">အတည္ျပဳ</string>
+    <string name="app_map_deaths">ေသဆုံး</string>
+    <string name="app_map_recovered">ျပန္ေကာင္း</string>
+    <string name="app_map_pui">ေစာင့္ၾကည့္</string>
+    <string name="app_map_township">ၿမိဳ႕နယ္</string>
+    <string name="app_map_pending">ဓါတ္ခြဲအေျဖေစာင့္ဆိုင္း</string>
+    <string name="app_update_available">ဗားရွင္းအသစ္ ထြက္ၿပီ!</string>
+    <string name="app_maintenance_message">App ကို ပိုမိုေကာင္းမြန္စြာ အသုံးျပဳႏိုင္ရန္အတြက္ ဆာဗာကို အဆင္ျမႇင့္တင္ေနပါသည္။ ေနာက္ခဏေနမွ ျပန္စစ္ၾကည့္ပါ။</string>
+    <string name="app_maintenance_title">ဆာဗာ ျပင္ဆင္ေနသည္</string>
+    <string name="app_download">ေဒါင္းလုပ္ျပဳလုပ္မည္</string>
+    <string name="app_mminfo_pui">ေစာင့္ၾကည့္</string>
+    <string name="app_mminfo_suspected">သံသယ</string>
+    <string name="app_mminfo_confirm">ပိုးေတြ႕</string>
+    <string name="app_mminfo_lab_neg">ပိုးမေတြ႕</string>
+    <string name="app_mminfo_lab_pending">ဓာတ္ခြဲအေျဖေစာင့္ဆိုင္း</string>
+    <string name="app_mminfo_pui_sus">ေစာင့္ၾကည့္/သံသယ</string>
+    <string name="app_mminfo_lab_deaths">ေသဆုံး</string>
 </resources>

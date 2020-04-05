@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.RadioButton;
@@ -34,6 +35,44 @@ public class DialogUtils {
         mAlertDialog = builder.show();
         return mAlertDialog;
     }
+
+    public static void showUpdateDialog(Context context, String message, boolean force, String downloadUrl) {
+        CovidAppDialogBuilder builder = new CovidAppDialogBuilder(context, !force);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_generic_message, null);
+        LottieAnimationView lottieAnimationView = view.findViewById(R.id.lottie_animation_view);
+        lottieAnimationView.setAnimation("app_update_animation.json");
+        lottieAnimationView.playAnimation();
+        ((TextView)view.findViewById(R.id.txt_message)).setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+        ((TextView)view.findViewById(R.id.txt_message)).setText(message);
+        builder.setTitle(context.getString(R.string.app_update_available));
+        builder.setView(view);
+        builder.setPositiveButton(R.string.app_download, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(downloadUrl));
+                context.startActivity(browserIntent);
+            }
+        });
+        mAlertDialog = builder.show();
+    }
+
+    public static void showMaintenanceDialog(Context context) {
+        CovidAppDialogBuilder builder = new CovidAppDialogBuilder(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_generic_message, null);
+        LottieAnimationView lottieAnimationView = view.findViewById(R.id.lottie_animation_view);
+        lottieAnimationView.setAnimation("error_maintenance.json");
+        lottieAnimationView.playAnimation();
+        ((TextView)view.findViewById(R.id.txt_message)).setText(R.string.app_maintenance_message);
+        builder.setTitle(R.string.app_maintenance_title);
+        builder.setView(view);
+        builder.setPositiveButton(R.string.app_ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        mAlertDialog = builder.show();
+    }
+
 
     public static void showGenericInfoDialog(Context context, String title, String message) {
         CovidAppDialogBuilder builder = new CovidAppDialogBuilder(context);

@@ -8,8 +8,10 @@ import retrofit2.http.POST;
 import retrofit2.http.Path;
 import tech.minthura.caresdk.model.Country;
 import tech.minthura.caresdk.model.Device;
+import tech.minthura.caresdk.model.MMMapInfo;
 import tech.minthura.caresdk.model.Post;
 import tech.minthura.caresdk.model.TotalStats;
+import tech.minthura.caresdk.model.UpdateCheck;
 
 interface ApiService {
 
@@ -30,5 +32,11 @@ interface ApiService {
 
     @GET("post")
     Call<ArrayList<Post>> getPosts();
+
+    @GET("hospitals")
+    Call<MMMapInfo> getHospitals();
+
+    @GET("updatecheck/{versionCode}")
+    Call<UpdateCheck> updateCheck(@Path("versionCode") int versionCode);
 
 }

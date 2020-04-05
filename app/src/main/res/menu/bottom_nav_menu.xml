@@ -12,6 +12,11 @@
         android:title="@string/app_tips" />
 
     <item
+        android:id="@+id/navigation_map"
+        android:icon="@drawable/ic_place_black_24dp"
+        android:title="@string/app_map" />
+
+    <item
         android:id="@+id/navigation_settings"
         android:icon="@drawable/ic_settings_black_24dp"
         android:title="@string/app_settings" />

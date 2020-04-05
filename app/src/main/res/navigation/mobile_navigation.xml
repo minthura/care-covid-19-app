@@ -32,4 +32,9 @@
         android:name="tech.minthura.carecovid.ui.postdetail.PostDetailFragment"
         android:label="@string/app_tips"
         tools:layout="@layout/fragment_post_details" />
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="tech.minthura.carecovid.ui.map.MapFragment"
+        android:label="@string/app_map"
+        tools:layout="@layout/fragment_map" />
 </navigation>

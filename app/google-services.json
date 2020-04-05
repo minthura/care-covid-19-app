@@ -1,50 +1,34 @@
 {
   "project_info": {
-    "project_number": "484581504922",
-    "firebase_url": "https://carecovid19-ffea4.firebaseio.com",
-    "project_id": "carecovid19-ffea4",
-    "storage_bucket": "carecovid19-ffea4.appspot.com"
+    "project_number": "1035617044894",
+    "firebase_url": "https://care-covid-19.firebaseio.com",
+    "project_id": "care-covid-19",
+    "storage_bucket": "care-covid-19.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:484581504922:android:ec4647647b9e4116d4ec23",
+        "mobilesdk_app_id": "1:1035617044894:android:a455d3a38dbcc942046e8f",
         "android_client_info": {
-          "package_name": "tech.minthura.carecovid"
+          "package_name": "tech.minthura.carecovid19"
         }
       },
       "oauth_client": [
         {
-          "client_id": "484581504922-l12jf94a3c45opo5oirdke1n4o4i1dcs.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "tech.minthura.carecovid",
-            "certificate_hash": "b4882ef4c4ef148f24d53d1b9925deb89d0c8a08"
-          }
-        },
-        {
-          "client_id": "484581504922-afbmtg8qi94o57991te1v5g8q4pba18v.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "tech.minthura.carecovid",
-            "certificate_hash": "7fd807a4b4e5fff7d64216c0b48502128d1f5567"
-          }
-        },
-        {
-          "client_id": "484581504922-oa599rjafdg5arvo9g1g9albe2aj0v4t.apps.googleusercontent.com",
+          "client_id": "1035617044894-hfgk6pjckjjqlu1aiblvcmt3i8rv6lft.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB5SzrB7HRVIpNc5yNaM1nA92xcUzQI51Q"
+          "current_key": "AIzaSyAKzekgINjWiMnxfA0N99ZXNijznaVsF8I"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "484581504922-oa599rjafdg5arvo9g1g9albe2aj0v4t.apps.googleusercontent.com",
+              "client_id": "1035617044894-hfgk6pjckjjqlu1aiblvcmt3i8rv6lft.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
@@ -53,27 +37,27 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:484581504922:android:d6fc53118508e9acd4ec23",
+        "mobilesdk_app_id": "1:1035617044894:android:bd5619df2de4cdac046e8f",
         "android_client_info": {
-          "package_name": "tech.minthura.carecovid.debug"
+          "package_name": "tech.minthura.carecovid19.debug"
         }
       },
       "oauth_client": [
         {
-          "client_id": "484581504922-oa599rjafdg5arvo9g1g9albe2aj0v4t.apps.googleusercontent.com",
+          "client_id": "1035617044894-hfgk6pjckjjqlu1aiblvcmt3i8rv6lft.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB5SzrB7HRVIpNc5yNaM1nA92xcUzQI51Q"
+          "current_key": "AIzaSyAKzekgINjWiMnxfA0N99ZXNijznaVsF8I"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "484581504922-oa599rjafdg5arvo9g1g9albe2aj0v4t.apps.googleusercontent.com",
+              "client_id": "1035617044894-hfgk6pjckjjqlu1aiblvcmt3i8rv6lft.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

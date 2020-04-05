@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -142,32 +143,37 @@
                 android:orientation="vertical"
                 android:layout_weight="1">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:layout_marginTop="4dp">
-
-                    <ImageView
-                        android:id="@+id/img_preferred_country_flag"
-                        android:layout_width="96dp"
-                        android:layout_height="72dp"/>
+                    card_view:cardUseCompatPadding="true"
+                    card_view:cardCornerRadius="2dp"
+                    card_view:contentPadding="8dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/txt_preferred_country"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/primaryTextColor"
-                            android:textSize="22sp"
-                            android:layout_marginStart="8dp"
-                            android:gravity="right"
-                            android:text="-"/>
+                            android:orientation="horizontal"
+                            android:gravity="center">
+                            <ImageView
+                                android:id="@+id/img_preferred_country_flag"
+                                android:layout_width="32dp"
+                                android:layout_height="32dp"/>
+                            <TextView
+                                android:id="@+id/txt_preferred_country"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/primaryTextColor"
+                                android:textSize="22sp"
+                                android:layout_marginStart="8dp"
+                                android:gravity="right"
+                                android:text="-"/>
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -186,13 +192,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
-                                    android:gravity="right">
+                                    android:gravity="center">
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textColor="@color/secondaryTextColor"
-                                        android:gravity="right"
                                         android:textSize="14sp"
+                                        android:textAlignment="center"
                                         android:text="@string/app_cases"/>
                                     <TextView
                                         android:id="@+id/txt_mm_cases"
@@ -200,7 +206,7 @@
                                         android:layout_height="wrap_content"
                                         android:textColor="#F4B400"
                                         android:textSize="23sp"
-                                        android:gravity="right"
+                                        android:gravity="center"
                                         android:text="0"/>
                                 </LinearLayout>
                             </LinearLayout>
@@ -214,13 +220,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
-                                    android:gravity="right">
+                                    android:gravity="center">
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:gravity="right"
                                         android:textColor="@color/secondaryTextColor"
                                         android:textSize="14sp"
+                                        android:textAlignment="center"
                                         android:text="@string/app_deaths"/>
                                     <TextView
                                         android:id="@+id/txt_mm_deaths"
@@ -228,7 +234,7 @@
                                         android:layout_height="wrap_content"
                                         android:textColor="#DB4437"
                                         android:textSize="23sp"
-                                        android:gravity="right"
+                                        android:gravity="center"
                                         android:text="0"/>
                                 </LinearLayout>
                             </LinearLayout>
@@ -242,13 +248,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:orientation="vertical"
-                                    android:gravity="right">
+                                    android:gravity="center">
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:textColor="@color/secondaryTextColor"
                                         android:textSize="14sp"
-                                        android:gravity="right"
+                                        android:textAlignment="center"
                                         android:text="@string/app_recovered"/>
                                     <TextView
                                         android:id="@+id/txt_mm_recovered"
@@ -256,14 +262,16 @@
                                         android:layout_height="wrap_content"
                                         android:textColor="#0F9D58"
                                         android:textSize="23sp"
-                                        android:gravity="right"
+                                        android:gravity="center"
                                         android:text="0"/>
                                 </LinearLayout>
                             </LinearLayout>
 
                         </LinearLayout>
+
                     </LinearLayout>
-                </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </LinearLayout>
 

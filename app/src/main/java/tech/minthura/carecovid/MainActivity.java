@@ -23,6 +23,10 @@ import tech.minthura.carecovid.support.HomeListener;
 import tech.minthura.carecovid.ui.postdetail.PostDetailFragment;
 import tech.minthura.caresdk.Session;
 import tech.minthura.caresdk.model.NotificationMessageEvent;
+import tech.minthura.caresdk.model.UpdateCheck;
+import tech.minthura.caresdk.service.CovidApiCallback;
+import tech.minthura.caresdk.service.Error;
+import tech.minthura.caresdk.service.ErrorResponse;
 
 public class MainActivity extends BaseActivity implements HomeListener {
 
@@ -36,7 +40,7 @@ public class MainActivity extends BaseActivity implements HomeListener {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_tips, R.id.navigation_settings)
+                R.id.navigation_home, R.id.navigation_map ,R.id.navigation_tips, R.id.navigation_settings)
                 .build();
         mNavController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, mNavController, appBarConfiguration);
@@ -80,6 +84,20 @@ public class MainActivity extends BaseActivity implements HomeListener {
         EventBus.getDefault().register(this);
         Session.getSession().setState(Session.State.OPEN);
         Session.getSession().postLastNotification();
+        DialogUtils.dismiss();
+        Session.getSession().updateCheck(new CovidApiCallback<UpdateCheck>() {
+            @Override
+            public void onSuccess(UpdateCheck updateCheck) {
+                DialogUtils.showUpdateDialog(MainActivity.this, MDetect.INSTANCE.getText(updateCheck.getChangeLog()), updateCheck.isForce(), updateCheck.getDownloadUrl());
+            }
+
+            @Override
+            public void onError(ErrorResponse errorResponse) {
+                if (errorResponse.getError() == Error.ERROR_SERVER_MAINTENANCE) {
+                    DialogUtils.showMaintenanceDialog(MainActivity.this);
+                }
+            }
+        });
     }
 
     @Override
