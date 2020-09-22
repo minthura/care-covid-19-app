@@ -75,7 +75,11 @@ public class MainActivity extends BaseActivity implements HomeListener {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onNotificationMessageEvent(NotificationMessageEvent event) {
-        DialogUtils.showGenericInfoDialog(this, MDetect.INSTANCE.getText(event.getTitle()), MDetect.INSTANCE.getText(event.getMessage()));
+        if (event.getType() == NotificationMessageEvent.NotificationType.NEW_CASE){
+            DialogUtils.showNewCasesInfoDialog(this, MDetect.INSTANCE.getText(event.getTitle()), MDetect.INSTANCE.getText(event.getMessage()));
+        } else {
+            DialogUtils.showGenericInfoDialog(this, MDetect.INSTANCE.getText(event.getTitle()), MDetect.INSTANCE.getText(event.getMessage()));
+        }
     }
 
     @Override

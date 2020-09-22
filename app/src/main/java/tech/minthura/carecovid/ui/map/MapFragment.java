@@ -59,7 +59,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         LatLng position = new LatLng(hospital.getLatitude(), hospital.getLongitude());
                         mMap.addMarker(new MarkerOptions()
                                 .position(position)
-                                .title(hospital.getHospital())
+                                .title(hospital.getTownship())
                                 .snippet(getSnippet(
                                         hospital.getTownship(),
                                         hospital.getPui(),
