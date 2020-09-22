@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -73,6 +74,31 @@ public class DialogUtils {
         mAlertDialog = builder.show();
     }
 
+    public static void showNewCasesInfoDialog(Context context, String title, String message) {
+        CovidAppDialogBuilder builder = new CovidAppDialogBuilder(context);
+        View view = LayoutInflater.from(context).inflate(R.layout.dialog_new_cases_message, null);
+        LottieAnimationView lottieAnimationView = view.findViewById(R.id.lottie_animation_view);
+        lottieAnimationView.setAnimation("info_animation.json");
+        lottieAnimationView.playAnimation();
+        ((TextView)view.findViewById(R.id.txt_title)).setText(title);
+        ((TextView)view.findViewById(R.id.txt_message)).setText(message);
+        builder.setView(view);
+        AlertDialog dialog = builder.show();
+        view.findViewById(R.id.btn_ok).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        view.findViewById(R.id.btn_open).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                openFacebookPage(context);
+            }
+        });
+    }
+
 
     public static void showGenericInfoDialog(Context context, String title, String message) {
         CovidAppDialogBuilder builder = new CovidAppDialogBuilder(context);
@@ -89,6 +115,27 @@ public class DialogUtils {
             }
         });
         builder.show();
+    }
+
+    private static void openFacebookPage(Context context) {
+        PackageManager pm = context.getPackageManager();
+        boolean isFacebookInstalled = false;
+        try {
+            pm.getPackageInfo("com.facebook.katana", 0);
+            isFacebookInstalled = true;
+        } catch (PackageManager.NameNotFoundException ignored){
+        }
+        try {
+            if (isFacebookInstalled){
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/199295433433103"));
+                context.startActivity(browserIntent);
+            } else {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/MinistryOfHealthAndSportsMyanmar/"));
+                context.startActivity(browserIntent);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void showAboutDialog(Context context) {
