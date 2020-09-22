@@ -40,8 +40,9 @@ public class AppFirebaseMessagingService extends FirebaseMessagingService {
             }
             String title = bundle.getString("TITLE", "CareCovid19");
             String body = bundle.getString("BODY", "Thank you for using this app.");
+            String type = bundle.getString("TYPE", "GENERIC");
             if (Session.getSession().getState() == Session.State.CLOSED){
-                Session.getSession().saveLastNotification(title, body);
+                Session.getSession().saveLastNotification(title, body, type);
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
                 final String NOTIFICATION_CHANNEL_ID = getString(R.string.default_notification_channel_id);
                 Intent intent = new Intent(this, LaunchActivity.class);
@@ -67,7 +68,7 @@ public class AppFirebaseMessagingService extends FirebaseMessagingService {
                 notificationManager.notify(0, builder.build());
 
             } else {
-                EventBus.getDefault().post(new NotificationMessageEvent(title, body));
+                EventBus.getDefault().post(new NotificationMessageEvent(title, body, type));
             }
         }
 

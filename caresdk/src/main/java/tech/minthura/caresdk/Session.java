@@ -181,11 +181,12 @@ public class Session {
         return prefs.getString("preferredCountry", "Myanmar");
     }
 
-    public void saveLastNotification(String title, String body) {
+    public void saveLastNotification(String title, String body, String type) {
         SharedPreferences prefs = mContext.getSharedPreferences(MM_DOTA_PREFERENCE, MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("notificationTitle", title);
         editor.putString("notificationBody", body);
+        editor.putString("notificationType", type);
         editor.putBoolean("hasNotification", true);
         editor.apply();
     }
@@ -197,7 +198,8 @@ public class Session {
         if (hasNotification){
             String title = prefs.getString("notificationTitle", "CareCovid19");
             String body = prefs.getString("notificationBody", "Thank you for using this app.");
-            EventBus.getDefault().post(new NotificationMessageEvent(title, body));
+            String type = prefs.getString("notificationType", "GENERIC");
+            EventBus.getDefault().post(new NotificationMessageEvent(title, body, type));
         }
         editor.putBoolean("hasNotification", false);
         editor.apply();
