@@ -18,19 +18,27 @@ public class HomeViewModel extends ViewModel {
     private MutableLiveData<TotalStats> mTotalStats;
     private MutableLiveData<Country> mPreferredCountry;
     private MutableLiveData<ErrorResponse> mError;
+    private MutableLiveData<Boolean> mFinishedResponse;
+    private boolean finishedCountriesDataResponse = false;
+    private boolean finishedAllStatsResponse = false;
+    private boolean finishedPreferredCountryResponse = false;
 
     public HomeViewModel() {
         mCountries = new MutableLiveData<>();
         mPreferredCountry = new MutableLiveData<>();
         mTotalStats = new MutableLiveData<>();
+        mFinishedResponse = new MutableLiveData<>();
         mError = new MutableLiveData<>();
     }
 
     void getCountriesData() {
+        finishedCountriesDataResponse = false;
         Session.getSession().getCountries(new CovidApiCallback<ArrayList<Country>>() {
             @Override
             public void onSuccess(ArrayList<Country> countries) {
                 mCountries.setValue(countries);
+                finishedCountriesDataResponse = true;
+                checkResponse();
             }
 
             @Override
@@ -41,10 +49,13 @@ public class HomeViewModel extends ViewModel {
     }
 
     void getAllStats() {
+        finishedAllStatsResponse = false;
         Session.getSession().getAllStats(new CovidApiCallback<TotalStats>() {
             @Override
             public void onSuccess(TotalStats totalStats) {
                 mTotalStats.setValue(totalStats);
+                finishedAllStatsResponse = true;
+                checkResponse();
             }
 
             @Override
@@ -55,10 +66,13 @@ public class HomeViewModel extends ViewModel {
     }
 
     void getPreferredCountry() {
+        finishedPreferredCountryResponse = false;
         Session.getSession().getPreferredCountry(new CovidApiCallback<Country>() {
             @Override
             public void onSuccess(Country country) {
                 mPreferredCountry.setValue(country);
+                finishedPreferredCountryResponse = true;
+                checkResponse();
             }
 
             @Override
@@ -68,12 +82,24 @@ public class HomeViewModel extends ViewModel {
         });
     }
 
+    private void checkResponse() {
+        if (finishedAllStatsResponse && finishedCountriesDataResponse && finishedPreferredCountryResponse){
+            mFinishedResponse.setValue(true);
+        } else {
+            mFinishedResponse.setValue(false);
+        }
+    }
+
     LiveData<ArrayList<Country>> getCountriesLiveData() {
         return mCountries;
     }
 
     LiveData<TotalStats> getTotalStatsLiveData() {
         return mTotalStats;
+    }
+
+    LiveData<Boolean> getFinishedResponseLiveData() {
+        return mFinishedResponse;
     }
 
     LiveData<Country> getPreferredCountryLiveData() {

@@ -2,14 +2,9 @@ package tech.minthura.carecovid.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,8 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.squareup.picasso.Picasso;
@@ -27,12 +20,12 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import fr.castorflex.android.smoothprogressbar.SmoothProgressBar;
+import me.myatminsoe.mdetect.MDetect;
 import tech.minthura.carecovid.R;
-import tech.minthura.carecovid.adapter.CountriesRecyclerViewAdapter;
+import tech.minthura.carecovid.support.DialogUtils;
 import tech.minthura.carecovid.support.HomeListener;
 import tech.minthura.carecovid.support.NumberFormatter;
-import tech.minthura.carecovid.support.ViewExpander;
-import tech.minthura.carecovid.view.EditTextBackEvent;
 import tech.minthura.caresdk.Session;
 import tech.minthura.caresdk.model.Country;
 import tech.minthura.caresdk.model.TotalStats;
@@ -41,10 +34,9 @@ import tech.minthura.caresdk.service.ErrorResponse;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    private CountriesRecyclerViewAdapter mCountriesRecyclerViewAdapter;
     private Timer mTimer;
     private HomeListener mHomeListener;
-    private EditTextBackEvent searchView;
+    private SmoothProgressBar progressbar;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -67,68 +59,17 @@ public class HomeFragment extends Fragment {
         TextView txtPreferredCountryCases = view.findViewById(R.id.txt_mm_cases);
         TextView txtPreferredCountryDeaths = view.findViewById(R.id.txt_mm_deaths);
         TextView txtPreferredCountryRecovered = view.findViewById(R.id.txt_mm_recovered);
-        TextView txtError = view.findViewById(R.id.txt_error);
-        searchView = view.findViewById(R.id.searchView);
-        View headerLayout = view.findViewById(R.id.header_layout);
-        searchView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus) {
-                    ViewExpander.collapse(headerLayout);
-                } else {
-                    ViewExpander.expand(headerLayout);
-                }
-            }
-        });
-        searchView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    mHomeListener.dismissSoftKeyboard();
-                }
-                return false;
-            }
-        });
-        searchView.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                mCountriesRecyclerViewAdapter.filter(s.toString());
-            }
-        });
-        searchView.setOnEditTextImeBackListener(new EditTextBackEvent.EditTextImeBackListener() {
-            @Override
-            public void onImeBack(EditTextBackEvent ctrl, String text) {
-                searchView.clearFocus();
-            }
-        });
+        TextView txtNewCases = view.findViewById(R.id.txt_new_cases);
+        TextView txtNewDeaths = view.findViewById(R.id.txt_new_deaths);
+        TextView txtNewRecovered = view.findViewById(R.id.txt_new_recovered);
+        TextView txtInfoDate = view.findViewById(R.id.txt_info_date);
         ImageView imgPreferredCountryFlag = view.findViewById(R.id.img_preferred_country_flag);
-        LottieAnimationView lottieAnimationView = view.findViewById(R.id.loading_lottie_view);
-        RecyclerView recyclerViewCountries = view.findViewById(R.id.recyclerViewCountries);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerViewCountries.setLayoutManager(linearLayoutManager);
-        mCountriesRecyclerViewAdapter = new CountriesRecyclerViewAdapter(getContext(), new ArrayList<>());
-        recyclerViewCountries.setAdapter(mCountriesRecyclerViewAdapter);
+        view.findViewById(R.id.btn_view_mohs).setOnClickListener(view1 -> DialogUtils.openFacebookPage(getContext()));
+        progressbar = view.findViewById(R.id.progressbar);
         homeViewModel.getCountriesLiveData().observe(getViewLifecycleOwner(), new Observer<ArrayList<Country>>() {
             @Override
             public void onChanged(ArrayList<Country> countries) {
-                lottieAnimationView.setVisibility(View.GONE);
                 txtTotalTerritories.setText(NumberFormatter.INSTANCE.formatToUnicode(countries.size()));
-                mCountriesRecyclerViewAdapter.addCountries(countries);
-                if (countries.size() == 0) {
-                    txtError.setVisibility(View.VISIBLE);
-                } else {
-                    txtError.setVisibility(View.GONE);
-                }
             }
         });
         homeViewModel.getTotalStatsLiveData().observe(getViewLifecycleOwner(), new Observer<TotalStats>() {
@@ -146,13 +87,25 @@ public class HomeFragment extends Fragment {
                 txtPreferredCountryDeaths.setText(NumberFormatter.INSTANCE.formatToUnicode(country.getDeaths()));
                 txtPreferredCountryRecovered.setText(NumberFormatter.INSTANCE.formatToUnicode(country.getRecovered()));
                 txtPreferredCountry.setText(country.getCountry());
+                txtNewCases.setText(NumberFormatter.INSTANCE.formatToUnicode(country.getNewconfirm()));
+                txtNewDeaths.setText(NumberFormatter.INSTANCE.formatToUnicode(country.getNewdeaths()));
+                txtNewRecovered.setText(NumberFormatter.INSTANCE.formatToUnicode(country.getNewrecovered()));
+                txtInfoDate.setText(MDetect.INSTANCE.getText(String.format(getString(R.string.app_information_received_label), country.getInfodate())));
                 Picasso.get().load(country.getCountryInfo().getFlag()).into(imgPreferredCountryFlag);
             }
         });
         homeViewModel.getErrorLiveData().observe(getViewLifecycleOwner(), new Observer<ErrorResponse>() {
             @Override
             public void onChanged(ErrorResponse errorResponse) {
-                lottieAnimationView.setVisibility(View.GONE);
+//                lottieAnimationView.setVisibility(View.GONE);
+            }
+        });
+        homeViewModel.getFinishedResponseLiveData().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean aBoolean) {
+                if (aBoolean){
+                    progressbar.progressiveStop();
+                }
             }
         });
         txtTotalCases.setText(NumberFormatter.INSTANCE.formatToUnicode(Session.getSession().getTotalCases()));
@@ -162,28 +115,20 @@ public class HomeFragment extends Fragment {
         txtPreferredCountryCases.setText(NumberFormatter.INSTANCE.formatToUnicode(Session.getSession().getPreferredCountryCases()));
         txtPreferredCountryDeaths.setText(NumberFormatter.INSTANCE.formatToUnicode(Session.getSession().getPreferredCountryDeaths()));
         txtPreferredCountryRecovered.setText(NumberFormatter.INSTANCE.formatToUnicode(Session.getSession().getPreferredCountryRecovered()));
+        txtNewCases.setText(NumberFormatter.INSTANCE.formatToUnicode(Session.getSession().getNewConfirmCases()));
+        txtNewDeaths.setText(NumberFormatter.INSTANCE.formatToUnicode(Session.getSession().getNewConfirmDeaths()));
+        txtNewRecovered.setText(NumberFormatter.INSTANCE.formatToUnicode(Session.getSession().getNewConfirmRecovered()));
+        txtInfoDate.setText(MDetect.INSTANCE.getText(String.format(getString(R.string.app_information_received_label), Session.getSession().getInfoDate())));
         txtPreferredCountry.setText(Session.getSession().getPreferredCountry());
         Picasso.get().load(Session.getSession().getPreferredCountryFlagUrl()).into(imgPreferredCountryFlag);
         return view;
     }
 
     @Override
-    public boolean onContextItemSelected(@NonNull MenuItem item) {
-        Country country = mCountriesRecyclerViewAdapter.getCountryAtPosition(mCountriesRecyclerViewAdapter.getPosition());
-        switch (item.getItemId()) {
-            case R.id.ctx_menu_add_preferred:
-                Session.getSession().savePreferredCountry(country.getCountry());
-                homeViewModel.getPreferredCountry();
-                return true;
-            default:
-                return super.onContextItemSelected(item);
-        }
-    }
-
-    @Override
     public void onResume() {
         super.onResume();
         delayedRun();
+        progressbar.progressiveStart();
     }
 
     @Override

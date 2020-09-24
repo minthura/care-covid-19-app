@@ -1,9 +1,10 @@
 <resources>
     <string name="app_name">Care COVID-19</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">Live Count</string>
+    <string name="title_home">Myanmar</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_international">International</string>
     <string name="app_coronavirus_pandemic">CORONAVIRUS PANDEMIC</string>
     <string name="app_covid_19_live_count">COVID-19 LIVE COUNT</string>
     <string name="app_total_cases">TOTAL CASES</string>
@@ -13,6 +14,9 @@
     <string name="app_cases">Cases</string>
     <string name="app_deaths">Deaths</string>
     <string name="app_recovered">Recovered</string>
+    <string name="app_cases_v2">Cases</string>
+    <string name="app_deaths_v2">Deaths</string>
+    <string name="app_recovered_v2">Recovered</string>
     <string name="app_territories">TERRITORIES</string>
     <string name="app_add_preferred">Set as preferred country</string>
     <string name="app_protect_yourself_and_others_from_getting_sick">Protect yourself and others from getting sick</string>
@@ -60,4 +64,7 @@
     <string name="app_mminfo_lab_pending">Lab Pending</string>
     <string name="app_mminfo_pui_sus">PUI &amp; Suspected</string>
     <string name="app_mminfo_lab_deaths">Deaths</string>
+    <string name="app_for_today">Latest information for today</string>
+    <string name="app_information_received_label">Above are the information received at\n%s</string>
+    <string name="app_view_details_mohs">View details at official MOHS facebook page</string>
 </resources>
