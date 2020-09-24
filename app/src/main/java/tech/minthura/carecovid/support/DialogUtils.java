@@ -117,7 +117,7 @@ public class DialogUtils {
         builder.show();
     }
 
-    private static void openFacebookPage(Context context) {
+    public static void openFacebookPage(Context context) {
         PackageManager pm = context.getPackageManager();
         boolean isFacebookInstalled = false;
         try {

@@ -7,6 +7,11 @@
         android:title="@string/title_home" />
 
     <item
+        android:id="@+id/navigation_international"
+        android:icon="@drawable/ic_baseline_language_24"
+        android:title="@string/title_international" />
+
+    <item
         android:id="@+id/navigation_tips"
         android:icon="@drawable/ic_check_box_black_24dp"
         android:title="@string/app_tips" />

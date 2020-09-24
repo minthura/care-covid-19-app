@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_international"
+        android:name="tech.minthura.carecovid.ui.international.InternationalFragment"
+        android:label="@string/title_international"
+        tools:layout="@layout/fragment_international" />
+
+    <fragment
         android:id="@+id/navigation_tips"
         android:name="tech.minthura.carecovid.ui.tips.TipsFragment"
         android:label="@string/app_tips"
@@ -37,4 +43,5 @@
         android:name="tech.minthura.carecovid.ui.map.MapFragment"
         android:label="@string/app_map"
         tools:layout="@layout/fragment_map" />
+
 </navigation>

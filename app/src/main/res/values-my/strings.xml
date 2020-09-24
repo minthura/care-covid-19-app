@@ -2,9 +2,10 @@
 <resources>
     <string name="app_name">Care COVID-19</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="title_home">တိုက်ရိုက်ဒေတာ</string>
+    <string name="title_home">မြန်မာ</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_international">ကမ္ဘာ</string>
     <string name="app_coronavirus_pandemic">ကော်ရိုနာဗိုင်းရပ်စ် ကပ်ဘေး</string>
     <string name="app_covid_19_live_count">COVID-19 တိုက်ရိုက် အချက်အလက်များ</string>
     <string name="app_total_cases">ကူးစက်သူ စုစုပေါင်း</string>
@@ -15,6 +16,9 @@
     <string name="app_cases">ကူးစက်\nသူများ</string>
     <string name="app_deaths">သေဆုံး\nသူများ</string>
     <string name="app_recovered">ပြန်ကောင်း\nသူများ</string>
+    <string name="app_cases_v2">အတည်ပြုလူနာအသစ်</string>
+    <string name="app_deaths_v2">ထပ်မံသေဆုံးသူများ</string>
+    <string name="app_recovered_v2">ပြန်ကောင်းသူများ</string>
     <string name="app_add_preferred">အဓိက စောင့်ကြည့်မည်</string>
     <string name="app_protect_yourself_and_others_from_getting_sick">မိမိကိုယ်နှင့် အခြားသူများအား ကူးစက်မှုမှ ကာကွယ်ခြင်း</string>
     <string name="app_stay_healthy_while_travelling">ခရီးသွားနေစဉ် ကျန်းမာစွာနေထိုင်ခြင်း</string>
@@ -57,4 +61,7 @@
     <string name="app_mminfo_lab_pending">ဓာတ်ခွဲအဖြေစောင့်ဆိုင်း</string>
     <string name="app_mminfo_pui_sus">စောင့်ကြည့်/သံသယ</string>
     <string name="app_mminfo_lab_deaths">သေဆုံး</string>
+    <string name="app_for_today">ယနေ့နောက်ဆုံးရ အချက်အလက်များ</string>
+    <string name="app_information_received_label">အထက်ပါအချက်အလက်များသည်\n%s\nတွင် နောက်ဆုံးရရှိသော အချက်အလက်များ ဖြစ်သည်။</string>
+    <string name="app_view_details_mohs">တရားဝင် MOHS Facebook page တွင် အသေးစိတ် သွားရောက်ကြည့်ရှုမည်။</string>
 </resources>

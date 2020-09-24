@@ -9,8 +9,8 @@ android {
         applicationId "tech.minthura.carecovid19"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 3
-        versionName "1.2"
+        versionCode 5
+        versionName "1.4"
         resValue "string", "default_notification_channel_id", "746923474585"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -29,7 +29,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
-            resValue "string", "api_base_url", "http://192.168.100.6:8080/api/v1/"
+            resValue "string", "api_base_url", "http://192.168.100.6:8090/api/v1/"
             applicationIdSuffix = '.debug'
             versionNameSuffix = '-debug'
             manifestPlaceholders = [usesCleartextTraffic: true]
@@ -53,6 +53,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.2.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'com.github.castorflex.smoothprogressbar:library:1.1.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
     implementation 'com.airbnb.android:lottie:3.3.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
