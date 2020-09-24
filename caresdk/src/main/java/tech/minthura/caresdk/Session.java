@@ -37,6 +37,10 @@ public class Session {
     private int mPreferredCountryCases = 0;
     private int mPreferredCountryDeaths = 0;
     private int mPreferredCountryRecovered = 0;
+    private int mNewConfirmCases = 0;
+    private int mNewConfirmDeaths = 0;
+    private int mNewConfirmRecovered = 0;
+    private String mInfoDate = "-";
     private int mAppVersionCode;
     private State state = State.CLOSED;
 
@@ -46,6 +50,22 @@ public class Session {
 
     public void setState(State state) {
         this.state = state;
+    }
+
+    public int getNewConfirmCases() {
+        return mNewConfirmCases;
+    }
+
+    public int getNewConfirmDeaths() {
+        return mNewConfirmDeaths;
+    }
+
+    public int getNewConfirmRecovered() {
+        return mNewConfirmRecovered;
+    }
+
+    public String getInfoDate() {
+        return mInfoDate;
     }
 
     public enum State { OPEN, CLOSED }
@@ -156,6 +176,10 @@ public class Session {
                 mPreferredCountryRecovered = country.getRecovered();
                 savePreferredCountry(country.getCountry());
                 savePreferredCountryFlag(country.getCountryInfo().getFlag());
+                mNewConfirmCases = country.getNewconfirm();
+                mNewConfirmDeaths = country.getNewdeaths();
+                mNewConfirmRecovered = country.getNewrecovered();
+                mInfoDate = country.getInfodate();
                 callback.onSuccess(country);
             }
 

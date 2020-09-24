@@ -38,6 +38,18 @@ public class Country {
     @SerializedName("deathsPerOneMillion")
     @Expose
     private Double deathsPerOneMillion;
+    @SerializedName("newconfirm")
+    @Expose
+    private Integer newconfirm;
+    @SerializedName("newdeaths")
+    @Expose
+    private Integer newdeaths;
+    @SerializedName("newrecovered")
+    @Expose
+    private Integer newrecovered;
+    @SerializedName("infodate")
+    @Expose
+    private String infodate;
 
     public String getCountry() {
         return country;
@@ -81,6 +93,22 @@ public class Country {
 
     public Double getDeathsPerOneMillion() {
         return deathsPerOneMillion;
+    }
+
+    public Integer getNewconfirm() {
+        return newconfirm;
+    }
+
+    public Integer getNewdeaths() {
+        return newdeaths;
+    }
+
+    public Integer getNewrecovered() {
+        return newrecovered;
+    }
+
+    public String getInfodate() {
+        return infodate;
     }
 
     public static class CountryInfo {
